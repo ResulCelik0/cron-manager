@@ -26,6 +26,11 @@ func (m *Manager) StopAll() {
 	m.Scheduler.Stop()
 }
 
+func (m *Manager) Check(name string) (err error) {
+	_, err = m.Scheduler.FindJobsByTag(name)
+	return
+}
+
 func (m *Manager) Add(name string, interval time.Duration, jobFunc interface{}, params ...interface{}) (err error) {
 	_, err = m.Scheduler.Every(interval.String()).Tag(name).Do(jobFunc, params...)
 	return
