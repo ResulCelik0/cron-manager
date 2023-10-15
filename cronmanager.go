@@ -26,12 +26,14 @@ func (m *Manager) StopAll() {
 	m.Scheduler.Stop()
 }
 
-func (m *Manager) Add(name string, interval time.Duration, jobFunc interface{}, params ...interface{}) {
-	m.Scheduler.Every(interval.String()).Tag(name).Do(jobFunc, params...)
+func (m *Manager) Add(name string, interval time.Duration, jobFunc interface{}, params ...interface{}) (err error) {
+	_, err = m.Scheduler.Every(interval.String()).Tag(name).Do(jobFunc, params...)
+	return
 }
 
-func (m *Manager) Remove(name string) {
-	m.Scheduler.RemoveByTag(name)
+func (m *Manager) Remove(name string) (err error) {
+	err = m.Scheduler.RemoveByTag(name)
+	return
 }
 
 func (m *Manager) RemoveAll() {
