@@ -48,3 +48,7 @@ func (m *Manager) RemoveAll() {
 func (m *Manager) Wait() {
 	m.Scheduler.StartBlocking()
 }
+
+func (m *Manager) Break() {
+	m.Scheduler.StopBlockingChan()
+}
