@@ -52,3 +52,7 @@ func (m *Manager) Wait() {
 func (m *Manager) Break() {
 	m.Scheduler.StopBlockingChan()
 }
+
+func (m *Manager) ListJob() {
+	m.Scheduler.GetAllTags() //Taglar Uniq olduğundan  çalışan monitör sayılarını verir
+}
