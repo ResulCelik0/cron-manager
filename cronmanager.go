@@ -18,6 +18,15 @@ func NewScheduler() *Manager {
 	}
 }
 
+func (m *Manager) Status(name string) (status bool, err error) {
+	j, err := m.Scheduler.FindJobsByTag(name)
+	for _, v := range j {
+		status = v.IsRunning()
+	}
+	return
+
+}
+
 func (m *Manager) StartAll() {
 	m.Scheduler.StartAsync()
 }
