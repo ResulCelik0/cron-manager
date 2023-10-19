@@ -63,5 +63,6 @@ func (m *Manager) Break() {
 }
 
 func (m *Manager) ListJob() (jobs []string) {
-	return m.Scheduler.GetAllTags() //Taglar Uniq olduğundan  çalışan monitör sayılarını verir
+	jobs = m.Scheduler.GetAllTags() //Taglar Uniq olduğundan  çalışan monitör sayılarını verir
+	return
 }
