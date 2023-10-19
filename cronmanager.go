@@ -62,6 +62,6 @@ func (m *Manager) Break() {
 	m.Scheduler.StopBlockingChan()
 }
 
-func (m *Manager) ListJob() {
-	m.Scheduler.GetAllTags() //Taglar Uniq olduğundan  çalışan monitör sayılarını verir
+func (m *Manager) ListJob() (jobs []string) {
+	return m.Scheduler.GetAllTags() //Taglar Uniq olduğundan  çalışan monitör sayılarını verir
 }
