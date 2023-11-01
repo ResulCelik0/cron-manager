@@ -45,6 +45,13 @@ func (m *Manager) Add(name string, interval time.Duration, jobFunc interface{}, 
 	return
 }
 
+// Şimdilik sadece interval değerini değiştirebiliyoruz
+func (m *Manager) Update(name string, interval time.Duration) (err error) {
+	j, err := m.Scheduler.FindJobsByTag(name)
+	m.Scheduler.Job(j[0]).Every(interval.String()).Update()
+	return
+}
+
 func (m *Manager) Remove(name string) (err error) {
 	err = m.Scheduler.RemoveByTag(name)
 	return
